@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+
+{% block sidebar %}
+{% endblock %}
+
+
+{% block content %}
+<div class="w-full flex justify-center align-center p-4">
+
+    <div class="toast toast-end toast-top">
+        {% for message in messages %}
+        <div class="alert alert-error alert-soft">
+            <span>{{message}}</span>
+        </div>
+        {% endfor %}
+    </div>
+
+
+    <form class="w-1/2 max-w-md flex flex-col p-4  border border-base-300 rounded-box h-[370px] mt-[100px]"
+        method="post">
+        {% csrf_token %}
+
+        <h1 class="text-3xl font-bold mb-4">LOGIN</h1>
+
+        {% for field in form %}
+
+        <fieldset class="fieldset mb-4">
+            <legend class="fieldset-legend">{{field.label}}</legend>
+            {{field}}
+            {{field.errors}}
+        </fieldset>
+
+        {% endfor %}
+
+        <button class="btn btn-primary" type="submit">Login</button>
+        <a href="{% url 'accounts:school_admin_register' %}" class="mt-4 text-sm text-blue-500">
+            Not a member? Click here to register
+        </a>
+    </form>
+</div>
+<!-- Your page content here -->
+{% endblock %}
