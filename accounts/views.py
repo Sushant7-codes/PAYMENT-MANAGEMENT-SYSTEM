@@ -66,6 +66,7 @@ def forgot_password(request):
         
         # send otp to email
         print("Code sent successfully to", email)
+        messages.success(request, "Code sent successfully !")
         
         return redirect("accounts:otp_confirmation")
     

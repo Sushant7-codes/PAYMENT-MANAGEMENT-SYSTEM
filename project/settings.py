@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "theme",
     "app",
     "accounts",
+    "background_task",
 ]
 
 TAILWIND_APP_NAME = "theme"
@@ -132,3 +133,6 @@ EMAIL_USE_SSL = False
 EMAIL_HOST_USER = "sushantpahari06@gmail.com"
 EMAIL_HOST_PASSWORD = "nbol kvvg glvy jnhe"
 DEFAULT_FROM_EMAIL = "sushantpahari06@gmail.com"
+
+
+MAX_ATTEMPTS = 3
