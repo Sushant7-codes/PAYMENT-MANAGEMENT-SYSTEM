@@ -30,7 +30,7 @@ def password_changed_email(email):
     from django.conf import settings
     
     subject = "Password Changed Successfully"
-    message=f'''
+    message='''
         Your password has been changed successfully.
         Now you can login with your new password.
         If you did not make this change, please contact support.
