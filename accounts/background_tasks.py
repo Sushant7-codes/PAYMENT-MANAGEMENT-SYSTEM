@@ -8,7 +8,7 @@ def send_otp(email,new_otp):  #background task
     message=f'''
         Use the following OTP to reset your password: {new_otp}
         OR 
-        Follow the link to reset the password: http://127.0.0.1:8000/accounts/set-new-password
+        Follow the link to reset the password: http://127.0.0.1:8000/accounts/otp-confirmation/
     '''
     send_mail(subject, message,settings.EMAIL_HOST_USER, [email])
     
