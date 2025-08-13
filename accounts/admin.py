@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import CustomUser
+from .models import CustomUser, OTP
 
 # Register your models here.
 admin.site.register(CustomUser)
+
+class OTPAdmin(admin.ModelAdmin):
+    list_display = ("otp", "created_at")
+    
+
+admin.site.register(OTP, OTPAdmin)
