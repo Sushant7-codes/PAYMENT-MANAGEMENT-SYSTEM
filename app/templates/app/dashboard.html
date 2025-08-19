@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
+{% load form_extras %}
+
 
 {% block content %}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Chart.js CDN -->
 
+{% if request.user.school %}
 <!-- Main content -->
 <main class="flex-grow p-6 overflow-auto">
+
+
     <h1 class="text-3xl font-bold mb-6">Dashboard</h1>
 
     <!-- Summary Cards -->
@@ -87,4 +92,52 @@
         }
     });
 </script>
+
+{% else %}
+<main class="p-6 flex flex-col items-center">
+    <h1 class="text-3xl md:text-4xl font-bold mb-6 text-center text-white">
+        Welcome to the dashboard! Please register your school to get started.
+    </h1>
+
+    <!-- Display Non-field Errors -->
+    {% if form.non_field_errors %}
+    <ul class="mb-4">
+        {% for error in form.non_field_errors %}
+        <li class="text-red-400 text-sm">{{ error }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <!-- Registration Form -->
+    <form action="{% url 'school:school_register' %}" method="post" enctype="multipart/form-data"
+        class="bg-gray-900 shadow-lg rounded-xl w-full max-w-4xl p-6">
+        {% csrf_token %}
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {% for field in form %}
+            <div class="flex flex-col">
+                <label for="{{ field.id_for_label }}" class="mb-1 font-semibold text-white">
+                    {{ field.label }}
+                </label>
+                {{ field|add_class:"input bg-gray-800 text-white placeholder-gray-400 border border-gray-700 rounded-lg p-3 w-full" }}
+
+                {% if field.errors %}
+                <p class="text-red-400 text-sm mt-1">
+                    {{ field.errors.0 }}
+                </p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-6">
+            <button type="submit"
+                class="btn btn-primary w-full py-3 rounded-lg text-lg font-semibold">
+                Register
+            </button>
+        </div>
+    </form>
+</main>
+{% endif %}
+
 {% endblock content %}

@@ -93,7 +93,6 @@ def set_new_password(request, user_id=None):
     if request.method == "POST":
         password1 = request.POST.get("password1")
         password2 = request.POST.get("password2")
-        print(password1, password2,"password set successfully")
         # send otp to password
         
         if password1 != password2:
@@ -102,7 +101,6 @@ def set_new_password(request, user_id=None):
         
         try:
             validate_password(password1)
-            
         except Exception as e:
             for error in list(e):
                 messages.error(request, str(error))

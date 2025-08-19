@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     "app",
     "accounts",
     "background_task",
+    "common",
+    "school",
 ]
 
 TAILWIND_APP_NAME = "theme"
