@@ -26,7 +26,6 @@ class School(models.Model):
     longitude = models.DecimalField(
         max_digits=20, decimal_places=13, blank=True, null=True
     )
-
     principal_name = models.CharField(max_length=255, blank=True, null=True)
     established_date = models.DateField(blank=True, null=True)
     registration_number = models.CharField(max_length=100, blank=True, null=True)
@@ -41,3 +40,5 @@ class School(models.Model):
 
     def __str__(self):
         return self.name
+    
+    
